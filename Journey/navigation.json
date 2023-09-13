@@ -1,0 +1,64 @@
+{
+  "FirstStep": {
+    "Title": "Congrats!",
+    "Text": "Congrats!  You logged in!  Welcome {FirstName}!  Today is a new day and you got this!  We are 100% on your side and if you follow this A-Z resource plan for bio moms, you WILL get your kids back faster and then we promise to help you THRIVE post reunification as well.\n\nSo are you READY?  Let's do this!!!",
+    "Inputs": "FirstName",
+    "Responses": {
+      "Next": "StepA"
+    },
+    "Reward": "none"
+  },
+  "StepA": {
+    "Title": "Step A",
+    "Text": "Fantastic, just a couple of questions… \n\nDo you use any mind altering substances to cope with your emotions or situations currently in your life? ",
+    "Inputs": null,
+    "Responses": {
+      "Yes": "StepA-1",
+      "No": "StepA-2"
+    },
+    "Reward": "none"
+  },
+  "StepA-1": {
+    "Title": "Step A",
+    "Text": "We all have things we struggle with, studies show that going to detox is the number 1 way to get off drugs and or alcohol and to begin your path to recovery.  We have located detoxes in your area to consider with your peer mentor: \n{SearchForDetoxResults}\n\nour peer mentor will help get you a spot and take you to the detox.  They will also make sure you have everything you need when you check in. The detox location will work with you to find a longer term rehab once you have completed detox but your peer mentor will be checking in with you regularly so just remember – YOU GOT THIS!",
+    "Inputs": null,
+    "Responses": {
+      "Next": "StepB"
+    },
+    "Functions": {
+      "Name": "SearchForDetox"
+    },
+    "Reward": "none"
+  },
+  "StepA-2": {
+    "Title": "Step A",
+    "Text": "Has it been noted in your case plan that there are suspicions of drug use and have you been asked to do a drug screen?",
+    "Inputs": null,
+    "Responses": {
+      "Yes": "StepA-2-1",
+      "No": "StepB"
+    },
+    "Reward": "none"
+  },
+  "StepA-2-1": {
+    "Title": "Step A",
+    "Text": "Did you pass or fail the test?",
+    "Inputs": null,
+    "Responses": {
+      "Pass": "StepB",
+      "Fail": "",
+      "Haven't taken yet": "StepA-2-2"
+    },
+    "Reward": "none"
+  },
+  "StepA-2-2": {
+    "Title": "Step A",
+    "Text": "No Problem! Life is sometimes crazy busy and near overwhelming isn’t it?  Your Peer mentor will work with your case manager to get you to a drug screening. Check back here once you know the result.",
+    "Inputs": null,
+    "Responses": {
+      "Next": "StepA-1"
+    },
+    "Reward": "none"
+  }
+
+}
