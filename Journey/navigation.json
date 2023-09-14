@@ -1,13 +1,32 @@
 {
   "FirstStep": {
     "Title": "Congrats!",
-    "Text": "Congrats!  You logged in!  Welcome {FirstName}!  Today is a new day and you got this!  We are 100% on your side and if you follow this A-Z resource plan for bio moms, you WILL get your kids back faster and then we promise to help you THRIVE post reunification as well.\n\nSo are you READY?  Let's do this!!!",
+    "Text": "Congrats! You have taken the first step in your journey! You logged in! Welcome {FirstName}!  Today is a new day and you got this!  We are 100% on your side and if you follow the suggestions we will give you through this website, you WILL get your kids back faster and then we promise to help you THRIVE post reunification as well.",
     "Inputs": "FirstName",
+    "Responses": {
+      "Next": "SecondStep"
+    },
+    "Reward": "none"
+  },
+  "SecondStep": {
+    "Title": "Congrats!",
+    "Text": "Every journey begins with a single step. Imagine yourself on this journey with us. You will have help and encouragement along the way. There will be mountains to climb, rivers to cross and obstacles that might slow you down but you can do it! \n\nBe the hero for your children and be the one responsible for bringing them home! ",
+    "Inputs": null,
+    "Responses": {
+      "Next": "ThirdStep"
+    },
+    "Reward": "none"
+  },
+  "ThirdStep": {
+    "Title": "Let's do this",
+    "Text": "So are you READY? Let’s do this!!!!",
+    "Inputs": null,
     "Responses": {
       "Next": "StepA"
     },
     "Reward": "none"
   },
+
   "StepA": {
     "Title": "Step A",
     "Text": "Fantastic, just a couple of questions… \n\nDo you use any mind altering substances to cope with your emotions or situations currently in your life? ",
@@ -20,10 +39,10 @@
   },
   "StepA-1": {
     "Title": "Step A",
-    "Text": "We all have things we struggle with, studies show that going to detox is the number 1 way to get off drugs and or alcohol and to begin your path to recovery.  We have located detoxes in your area to consider with your peer mentor: \n{SearchForDetoxResults}\n\nour peer mentor will help get you a spot and take you to the detox.  They will also make sure you have everything you need when you check in. The detox location will work with you to find a longer term rehab once you have completed detox but your peer mentor will be checking in with you regularly so just remember – YOU GOT THIS!",
+    "Text": "We all have things we struggle with, studies show that going to detox is the number 1 way to get off drugs and or alcohol and to begin your path to recovery.  We have located detoxes in your area to consider with your peer mentor: \n{SearchForDetoxResults}\n\nYour peer mentor will help get you a spot and take you to the detox.  They will also make sure you have everything you need when you check in. The detox location will work with you to find a longer term rehab once you have completed detox but your peer mentor will be checking in with you regularly so just remember – YOU GOT THIS!",
     "Inputs": null,
     "Responses": {
-      "Next": "StepB"
+      "Next": "StepA-3"
     },
     "Functions": {
       "SearchForDetox": null
@@ -36,7 +55,7 @@
     "Inputs": null,
     "Responses": {
       "Yes": "StepA-2-1",
-      "No": "StepB"
+      "No": "StepA-2-2"
     },
     "Reward": "none"
   },
@@ -45,20 +64,212 @@
     "Text": "Did you pass or fail the test?",
     "Inputs": null,
     "Responses": {
-      "Pass": "StepB",
-      "Fail": "",
-      "Haven't taken yet": "StepA-2-2"
+      "Pass": "StepA-2-2",
+      "Fail": "StepA-1",
+      "Haven't taken yet": "StepA-2-3"
     },
     "Reward": "none"
   },
   "StepA-2-2": {
     "Title": "Step A",
-    "Text": "No Problem! Life is sometimes crazy busy and near overwhelming isn’t it?  Your Peer mentor will work with your case manager to get you to a drug screening. Check back here once you know the result.",
+    "Text": "What allegations have been made that resulted in your kids going into care?",
+    "comments":"TO DO, check box implementation",
+    "Responses": {
+      "Next": "StepD"
+    },
+    "Reward": "none"
+  },
+  "StepA-2-3": {
+    "Title": "Step A",
+    "Text": "No Problem! Life is sometimes crazy busy and near overwhelming isn’t it?  Your Peer mentor will work with your case manager to get you to a drug screening. Check back here once you know the result",
     "Inputs": null,
     "Responses": {
-      "Next": "StepA-1"
+      "Next": ""
+    },
+    "Reward": "none"
+  },
+  "StepA-3": {
+    "Title": "Step A",
+    "Text": "A little bird told us you have been to Detox! What a HUGE step!  We are all routing for you.  Your kids are routing for you!  You’ve GOT this! \n\n You've earned 15 points and are on your way to crossing that huge river in front of you called Rehab River",
+    "Input": null,
+    "Responses": {
+      "Next": "StepB"
+    },
+    "Reward": "none"
+  },
+  "StepB": {
+    "Title": "Step B",
+    "Text": "You’ve settled on a Rehab – you’re amazing!  We hope you know that.  Terrific, fantastic, awesome, amazing!  Keep going girl – you can do it.  We are all behind you.  Don’t forget! High five between bird and animation.  Make sure you talk to your Peer Mentor if you need anything at all.  Moms Adopting Moms has you covered. \n\nRemember, rehab river is very long and very difficult for most to cross but we will be with you every step.",
+    "Input": null,
+    "Responses": {
+      "Next": "StepC"
+    },
+    "Reward": "none"
+  },
+  "StepC-1": {
+    "Title": "Step C",
+    "Text": "Now that you’ve gotten to rehab and settled in, we can talk about finding you a job and do other things to help navigate your way across rehab river!",
+    "Input": null,
+    "Responses": {
+      "Next": "StepC-2"
+    },
+    "Reward": "none"
+  },
+  "StepC-2": {
+    "Title": "Step C",
+    "Text": "Thanks for letting us know what we need to address together. While some would consider those as massive rivers you need to cross and others on that list might just be obstacles you need to overcome, we are with you to help tackle them. But first steps first...",
+    "Inputs": null,
+    "Responses": {
+      "Next": "StepD"
+    },
+    "Reward": "none"
+  },
+  "StepD": {
+    "Title": "Step D",
+    "Text": "Can you let us know if you are working currently?",
+    "Inputs": null,
+    "Responses": {
+      "Yes": "StepD-1",
+      "No": "StepD-2"
+    },
+    "Reward": "none"
+  },
+  "StepD-1": {
+    "Title": "Step D",
+    "Text": "What is the name of your employer? {EmployerName} \n\nWhat is your Job title? {JobTitle} \n\nDo you like your job? {JobSatisfaction} \n\n How much are you being paid by hour right now? {HourlyPay}",
+    "Inputs": "EmployerName", 
+    "comments" : "TO-DO pretty sure what i did above was wrong but need to figure out how to implement multiple inputs",
+    "Responses": {
+      "Next": "StepG"
+    },
+    "Reward": "none"
+  },
+  "StepD-2": {
+    "Title": "Step D",
+    "Text": "Before we can find something that would be a great fit, we need to make sure you have all the proper identification that employers are looking for…",
+    "comments" : "TO-DO checkbox",
+    "Responses": {
+      "Next": "StepE"
+    },
+    "Reward": "none"
+  },
+  "StepE": {
+    "Title": "Step E",
+    "Text": "You applied for all your ids – TERRIFIC!! You are on your way to finding the perfect job. AND you just earned 10 points!  You are one step closer to earning your APPRENTICE badge!",
+    "Input": null,
+    "Responses": {
+      "Next": "StepE-1"
+    },
+    "Reward": "none"
+  },
+  "StepE-1": {
+    "Title": "Step E",
+    "Text": "So tell us something… \n\nWhat is your DREAM job? {DreamJob} \n\nSometimes we can’t get our dream jobs until we’ve completed some training or gotten a little more experience so let’s find something you’re good at or have experience doing…",
+    "Input": "DreamJob",
+    "comment": "You're meant to send the dream job input to the peer mentor in email",
+    "Responses": {
+      "Next": "StepE-2"
+    },
+    "Reward": "none"
+  },
+  "StepE-2": {
+    "Title": "Step E",
+    "Text": "Which of these types of jobs have you done before that you enjoyed?",
+    "Input": null,
+    "comment": "Implement check boxes",
+    "Responses": {
+      "Next": "StepE-3"
+    },
+    "Reward": "none"
+  },
+  "StepE-3": {
+    "Title": "Step E",
+    "Text": "Here are five jobs that fit with what you enjoy and your experience hiring right now in your area. Fill out the application and let’s see what happens! We’re also including a few job search tools that you can use to search as well. We’re routing for you!! \n{SearchForJob}",
+    "Input": null,
+    "comment": "Implement check boxes",
+    "Comments" : "There are meant to be two paths here, Step F is for users who were or in rehab, step G is for users who are not in rehab but I didn't know how to show a distinciton in the user journey",
+    "Responses": {
+      "Next": "StepF"
+    },
+    "Functions": {
+      "SearchForJob": null
+    },
+    "Reward": "none" 
+  },
+  "StepF": {
+    "Title": "Step F",
+    "Text": "Studies show that recovery is more certain the more committed you are to attending self help meetings during your time in rehab and beyond,  In fact only 26^%of people are able to stay sober if they don’t attend compared to 82% if they do. \n\nDo you need help finding local self help meetings in your area?",
+    "Input": null,
+    "Responses": {
+      "Yes": "StepF-1",
+      "No": "StepF-2"
+    },
+    "Reward": "none"
+  },
+  "StepF-1": {
+    "Title": "Step F",
+    "Text": "Which ones?",
+    "comment": "Implement checkbox",
+    "Input": null,
+    "Responses": {
+      "Next": "StepH"
+    },
+    "Reward": "none"
+  },
+  "StepF-2": {
+    "Title": "Step F",
+    "Text": " Great!– your rehab has probably hooked you up with all the meetings you need, have you been attending regularly?",
+    "Input": null,
+    "Responses": {
+      "Yes": "StepF-2-1",
+      "No": "Step-F-2-2"
+    },
+    "Reward": "none"
+  },
+  "StepF-2-1": {
+    "Title": "Step F",
+    "Text": "Wooo hooo great job.  You’re killing this.  It works if you work it!  You just earned 10 points",
+    "Input": null,
+    "Responses": {
+      "Next": "StepH"
+    },
+    "Reward": "none"
+  },
+  "StepF-2-2": {
+    "Title": "Step F",
+    "Text": "We can get you connected to all the meetings in your area.  Sign up now and keep moving down your path. You are doing great! \n{SearchForMeetings}",
+    "Input": null,
+    "Responses": {
+      "Next": "StepH"
+    },
+    "Functions": {
+      "SearchForMeetings": null
+    },
+    "Reward": "none"
+  },
+  "StepG": {
+    "Title": "Step G",
+    "Text": "Which of these Assessments did DFCS require from you in your case plan?",
+    "Input": null,
+    "comment": "Implement checklist and drop down menu code",
+    "Responses": {
+      "Next": "StepH"
+    },
+    "Reward": "none"
+  },
+  "StepH": {
+    "Title": "Step H",
+    "Text": "Have you seen your kids yet?!?!  IT’S TIME!  They miss you terribly! \n\nHas DFCS setup weekly visitations for you with your children?",
+    "Input": null,
+    "Responses": {
+      "Yes": "",
+      "No": ""
     },
     "Reward": "none"
   }
+  
+
+
+
 
 }
