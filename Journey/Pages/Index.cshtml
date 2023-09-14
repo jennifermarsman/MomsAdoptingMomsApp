@@ -1,10 +1,58 @@
 ﻿@page
 @model IndexModel
 @{
-    ViewData["Title"] = "Home page";
+    ViewData["Title"] = "Home Again";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+    <style>
+
+      /* Add some basic styles to make the page look good on mobile devices */
+
+      body {
+        font-family: Arial, sans-serif;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding: 0;
+      }
+
+      h1 {
+        font-size: 24px;
+        font-weight: bold;
+        margin: 20px 0 10px;
+      }
+
+      p {
+        margin: 10px 0;
+      }
+
+      input[type="text"] {
+        display: block;
+        width: 100%;
+        padding: 10px;
+        margin: 10px 0;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-sizing: border-box;
+        font-size: 16px;
+      }
+
+      .response-box {
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        padding: 10px;
+        margin: 10px 0;
+      }
+
+    </style>
+
+
+    <div class="text-center">
+        <h1 class="display-4">Welcome</h1>
+    </div>
+
+    <h1>@ViewData["Heading"]</h1>
+
+    <p>@ViewData["Text"]</p>
+
+
