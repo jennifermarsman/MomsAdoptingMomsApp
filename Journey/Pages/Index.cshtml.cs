@@ -18,6 +18,9 @@ namespace Journey.Pages
             _logger = logger;
         }
 
+        public int NumberOfButtons { get; set; } = 2; // Set the initial number of buttons
+        public string ResponsesText = "NewButton";
+        public string ResponsesAction = "NewAction";
         public void OnGet()
         {
             // TODO: Pull the identity and current step from somewhere
@@ -66,15 +69,52 @@ namespace Journey.Pages
             {
                 ViewData["Reward"] = @"img\" + reward;
             }
+
+            ViewData["NumberOfButtons"] = 2;
+            for(int i=0; i<NumberOfButtons; i++)
+            {
+                ViewData["ResponsesText"+i] = "NewButton" + i.ToString();
+                ViewData["ResponsesAction"+i] = "NewAction" + i.ToString();
+            }
+
+            Console.WriteLine("Responses: ", ViewData["Responses"]);
             // TODO: any sizing work that needs to be done here?  Proper Grid/layout for phone?
         }
 
         public void OnButtonPress()
         {
+            Console.WriteLine("Button Pressed");
             // TODO: Store off user's progress in journey - step name
             // TODO: Redraw page based on next step and what button was clicked
             // TODO: change currentStep
             // TODO: call LoadPage() with new step
+        }
+
+        public IActionResult OnPost(string action)
+        {
+            switch (action)
+            {
+                case "Action1":
+                    Console.WriteLine("Button1 Pressed");
+                    // Handle the click event for Button 1
+                    // You can perform any necessary actions for Button 1
+                    break;
+                case "Action2":
+                    // Handle the click event for Button 2
+                    // You can perform any necessary actions for Button 2
+                    break;
+                case "NewAction0":
+                    Console.WriteLine("NewAction0 Pressed");
+                    break;
+                case "NewAction1":
+                    Console.WriteLine("NewAction1 Pressed");
+                    break;
+                default:
+                    // Handle other cases or errors
+                    break;
+            }
+
+            return Page();
         }
     }
 }
