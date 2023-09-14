@@ -53,8 +53,20 @@ namespace Journey.Pages
             ViewData["Text"] = steps[step].Text;
 
             // TODO: dynamically generate buttons in html layout
+
             // TODO: use Functions
-            // TODO: use Rewards
+
+            // Rewards
+            string? reward = steps[step].Reward;
+            if ( reward == null || reward == "none")
+            {
+                ViewData["Reward"] = @"img\clear.png";
+            }
+            else
+            {
+                ViewData["Reward"] = @"img\" + reward;
+            }
+            // TODO: any sizing work that needs to be done here?  Proper Grid/layout for phone?
         }
 
         public void OnButtonPress()
