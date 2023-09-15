@@ -12,7 +12,6 @@ namespace Journey.Pages
     public class IndexModel : PageModel
     {
         Dictionary<string, Step> steps;
-        string currentStep = "FirstStep";
 
         private readonly ILogger<IndexModel> _logger;
 
@@ -30,10 +29,12 @@ namespace Journey.Pages
             //string City = "Atlanta";
             //string State = "GA";
             string ZipCode = "30303";
-            currentStep = "FirstStep";
+            string currentStep = "FirstStep";
 
             // TODO: Test and ensure that the navigation json loads only once and is held in memory
             //LoadJson();
+
+            // TODO: maybe some error checking here?  Send a text or email to Mary if the currentStep isn't found, to show that there is a typo in the Excel spreadsheet?
             LoadPage(currentStep);
 
             // TODO: reward screen separate?  or add image to step layout?  
@@ -84,17 +85,11 @@ namespace Journey.Pages
             // TODO: any sizing work that needs to be done here?  Proper Grid/layout for phone?
         }
 
-        public void OnButtonPress()
-        {
-            Console.WriteLine("Button Pressed");
-            // TODO: Store off user's progress in journey - step name
-            // TODO: Redraw page based on next step and what button was clicked
-            // TODO: change currentStep
-            // TODO: call LoadPage() with new step
-        }
-
         public IActionResult OnPost(string action)
         {
+            // TODO: Store off user's progress in journey - step name
+
+            // Redraw page based on next step and what button was clicked
             LoadPage(action);
             return Page();
         }
@@ -108,9 +103,10 @@ namespace Journey.Pages
             }
         }
 
-        public void StepA()
+        public void SearchForDetox()
         {
-            Console.WriteLine("StepA has been called");
+            // TODO: Bing Search code here, using zip code
+            Console.WriteLine("SearchForDetox has been called");
         }
     }
 }
