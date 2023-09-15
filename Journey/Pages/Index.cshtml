@@ -3,38 +3,102 @@
 @{
     ViewData["Title"] = "Home Again";
 }
-
+    
     <style>
 
       /* Add some basic styles to make the page look good on mobile devices */
 
       body {
-        font-family: Arial, sans-serif;
-        font-size: 16px;
-        line-height: 1.5;
-        margin: 0;
-        padding: 0;
+        width: 600px;
+        flex-shrink: 0;
+        height: 2000px;
+        background: url(img/background.png), lightgray 50%;
+        background-size: contain;
+        background-repeat: no-repeat;
       }
 
-      h1 {
-        font-size: 24px;
-        font-weight: bold;
-        margin: 20px 0 10px;
+    .text-center{
+        width: 1000px;
+        height: 50px;
+        flex-shrink: 0;
+        color: #FFF;
+        text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+        font-family: Trade Winds;
+        font-size: 50px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 31px; /* 25.833% */
+        letter-spacing: 2px;
+        text-align: center;
+        margin-left: auto;
+        margin-right: auto;
+        padding: 75px 75px 75px 175px;
+        /* margin-top: 150px;
+        margin-left: 134px; */
       }
 
-      p {
-        margin: 10px 0;
+    .content{
+        width: 951px;
+        height: 1000px;
+        flex-shrink: 0;
+        border-radius: 20px;
+        background: rgba(255, 255, 255, 0.95);
+        box-shadow: 0px 8px 8px 0px rgba(0, 0, 0, 0.25);
+        margin-left: auto;
+        margin-right: auto;
+        padding: 50px 25px 50px 25px;
+        margin-top: 100px;
+        margin-left: 134px;
+    }
+
+    .content h1{
+            width: 917.619px;
+            flex-shrink: 0;
+            color: #375047;
+            text-align: center;
+            font-family: Sora;
+            font-size: 60px;
+            font-style: normal;
+            font-weight: 600;
+            padding: 25px 20px 0px 20px;
+    }
+
+     .content p{
+            width: 825px;
+            flex-shrink: 0;
+            color: #444947;
+            font-family: Sora;
+            font-size: 40px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: 60px; /* 150% */
+            text-align: justify;
+            padding: 25px 71px 50px 71px;
       }
 
-      input[type="text"] {
-        display: block;
-        width: 100%;
-        padding: 10px;
-        margin: 10px 0;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-        box-sizing: border-box;
-        font-size: 16px;
+      .content button{
+            width: 200px;
+            flex-shrink: 0;
+            color: #EEFFF9;
+            text-align: center;
+            font-family: Sora;
+            font-size: 40px;
+            font-style: normal;
+            font-weight: 600;
+            border-radius: 15px;
+            /*line-height: 120px; */
+            background-color: #44c767;
+            border: 1px solid #18ab29;
+            padding: 25px 50px 25px 50px;
+            margin-left: auto;
+            margin-right: auto; 
+            top: 25%;
+            margin-left: 375px;
+            cursor: pointer;
+      }
+
+      .content button:active{
+                background-color: #5cbf2a;
       }
 
       .response-box {
@@ -48,25 +112,30 @@
 
 
     <div class="text-center">
-        <h1 class="display-4">Welcome</h1>
+        <h1>Hero's Journey</h1>
     </div>
 
-    <h1>@ViewData["Heading"]</h1>
+    <div class="content">
+        <h1>@ViewData["Heading"]</h1>
 
-    <p>@ViewData["Text"]</p>
+        <p>@ViewData["Text"]</p>
 
-    <form method="post">
-        @for (int i = 0; i < Convert.ToInt32(@ViewData["NumberOfButtons"]); i++)
-        {
-            string buttonName = "ResponsesText" + i;
-            string actionName = "ResponsesAction" + i;
-            <button type="submit" class="btn btn-primary" name=action value=@ViewData[actionName]>@ViewData[buttonName]</button>
-        }
+        <form method="post">
+          @for (int i = 0; i < Convert.ToInt32(@ViewData["NumberOfButtons"]); i++)
+          {
+              string buttonName = "ResponsesText" + i;
+              string actionName = "ResponsesAction" + i;
+              <button type="submit" class="btn btn-primary" name=action value=@ViewData[actionName]>@ViewData[buttonName]</button>
+          }
         <div>
-        @* <p>@ViewData["SearchResults"]</p> *@
-        @using System.Web;
-        <p>@Html.Raw(((string)ViewData["SearchResults"]).Replace("\n", "<br />"))</p>
+          @* <p>@ViewData["SearchResults"]</p> *@
+          @using System.Web;
+          <p>@Html.Raw(((string)ViewData["SearchResults"]).Replace("\n", "<br />"))</p>
         </div>
-    </form>
+      </form>
 
-    <img id="imgReward" src="@ViewData["Reward"]" alt="Reward" />
+        <img id="imgReward" src="@ViewData["Reward"]" alt="Reward" />
+    </div>
+=======
+    
+
