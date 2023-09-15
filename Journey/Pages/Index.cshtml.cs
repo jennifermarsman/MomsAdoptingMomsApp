@@ -33,7 +33,7 @@ namespace Journey.Pages
             currentStep = "FirstStep";
 
             // TODO: Test and ensure that the navigation json loads only once and is held in memory
-            LoadJson();
+            //LoadJson();
             LoadPage(currentStep);
 
             // TODO: reward screen separate?  or add image to step layout?  
@@ -51,14 +51,15 @@ namespace Journey.Pages
 
         private void LoadPage(string step)
         {
+            // TODO: how do I not have to do this here?  Would prefer one load.
+            LoadJson();
+
             ViewData["Heading"] = steps[step].Title;
             // TODO: need to format Text to include Input (name and such) in the output
-            ViewData["Text"] = steps[step].Text;
-
-            // TODO: dynamically generate buttons in html layout
-
             // TODO: use Functions
 
+            ViewData["Text"] = steps[step].Text;
+            
             // Rewards
             string? reward = steps[step].Reward;
             if (reward == null || reward == "none")
@@ -70,6 +71,7 @@ namespace Journey.Pages
                 ViewData["Reward"] = @"img\" + reward;
             }
 
+            // Dynamically generate buttons in html layout
             int numberOfButtons = steps[step].Responses.Count();
             ViewData["NumberOfButtons"] = numberOfButtons;
             for (int i = 0; i < numberOfButtons; i++)
@@ -93,31 +95,17 @@ namespace Journey.Pages
 
         public IActionResult OnPost(string action)
         {
-            if (action == "Action1")
-            {
-                Console.WriteLine("Button1 Pressed");
-                // Handle the click event for Button 1
-                // You can perform any necessary actions for Button 1
-            }
-            else if (action == "Action2")
-            {
-                // Handle the click event for Button 2
-                // You can perform any necessary actions for Button 2
-            }
-            else if (action == "StepA")
-            {
-                MethodInfo methodInfo = this.GetType().GetMethod(action);
-                if (methodInfo != null)
-                {
-                    methodInfo.Invoke(this, null);
-                }
-            }
-            else
-            {
-                // Handle other cases or errors
-            }
-
+            LoadPage(action);
             return Page();
+        }
+
+        private void InvokeFunction(string functionName)
+        {
+            MethodInfo methodInfo = this.GetType().GetMethod(functionName);
+            if (methodInfo != null)
+            {
+                methodInfo.Invoke(this, null);
+            }
         }
 
         public void StepA()
