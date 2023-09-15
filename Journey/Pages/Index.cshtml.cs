@@ -55,6 +55,10 @@ namespace Journey.Pages
             // TODO: dynamically generate buttons in html layout
 
             // TODO: use Functions
+            if (steps[step].Functions != null)
+            {
+                RunFunction(steps[step].Functions);
+            }
 
             // Rewards
             string? reward = steps[step].Reward;
@@ -75,6 +79,25 @@ namespace Journey.Pages
             // TODO: Redraw page based on next step and what button was clicked
             // TODO: change currentStep
             // TODO: call LoadPage() with new step
+        }
+
+        public void RunFunction(Functions function)
+        {
+            switch(function.Name)
+            {
+                // TODO: Make enum and make parameter to parameters
+                case "SearchForDetox":
+                    SearchForDetox(function.Parameter);
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        public string[] SearchForDetox(string zipcode)
+        {
+            // do the zipcode action here
+            return new string[] {"abc"};
         }
     }
 }
