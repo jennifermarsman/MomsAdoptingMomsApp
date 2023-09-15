@@ -6,6 +6,12 @@ using System.Diagnostics;
 using System.Collections.Generic;
 using System;
 using System.Reflection;
+using Google.Apis.Customsearch.v1;
+using Google.Apis.Customsearch.v1.Data;
+using System.Text;
+using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using System.Web;
 
 namespace Journey.Pages
 {
@@ -20,6 +26,13 @@ namespace Journey.Pages
             _logger = logger;
         }
 
+        private string ZipCode = "30303";
+
+
+        [BindProperty]
+        public bool IsTextBoxVisible { get; set; } = false; // Set the initial visibility
+
+
         public void OnGet()
         {
             // TODO: Pull the identity and current step from somewhere
@@ -28,8 +41,9 @@ namespace Journey.Pages
             //string Address = "100 Peachtree Lane";
             //string City = "Atlanta";
             //string State = "GA";
-            string ZipCode = "30303";
             string currentStep = "FirstStep";
+
+
 
             // TODO: Test and ensure that the navigation json loads only once and is held in memory
             //LoadJson();
@@ -57,10 +71,9 @@ namespace Journey.Pages
 
             ViewData["Heading"] = steps[step].Title;
             // TODO: need to format Text to include Input (name and such) in the output
-            // TODO: use Functions
-
             ViewData["Text"] = steps[step].Text;
-            
+            ViewData["SearchResults"] = "";
+
             // Rewards
             string? reward = steps[step].Reward;
             if (reward == null || reward == "none")
@@ -82,6 +95,26 @@ namespace Journey.Pages
             }
 
             Console.WriteLine("Responses: ", ViewData["Responses"]);
+
+            if (steps[step].Functions != null)
+            {
+                for (int i = 0; i < steps[step].Functions.Count(); i++)
+                {
+                    string functionName = steps[step].Functions.ElementAt(i).Key.ToString();
+                    // Read the arguments to the function from the step
+                    string functionArguments = steps[step].Functions.ElementAt(i).Value.ToString();
+                    if (functionName == "Search")
+                    {
+                        string searchResults = Search(functionArguments);
+                        ViewData["SearchResults"] = searchResults;
+                    }
+                    else
+                    {
+                        InvokeFunction(functionName, functionArguments);
+                    }
+                }
+            }
+
             // TODO: any sizing work that needs to be done here?  Proper Grid/layout for phone?
         }
 
@@ -90,23 +123,35 @@ namespace Journey.Pages
             // TODO: Store off user's progress in journey - step name
 
             // Redraw page based on next step and what button was clicked
+            IsTextBoxVisible = false;
             LoadPage(action);
             return Page();
         }
 
-        private void InvokeFunction(string functionName)
+        private void InvokeFunction(string functionName, string arguments)
         {
             MethodInfo methodInfo = this.GetType().GetMethod(functionName);
             if (methodInfo != null)
             {
-                methodInfo.Invoke(this, null);
+                string[] args = arguments.Split(",");
+                methodInfo.Invoke(this, args);
             }
         }
 
-        public void SearchForDetox()
+        public string Search(string query)
         {
-            // TODO: Bing Search code here, using zip code
-            Console.WriteLine("SearchForDetox has been called");
+            if (query.IndexOf("near me", StringComparison.OrdinalIgnoreCase) >= 0)
+            {
+                query = query.Replace("me", ZipCode, StringComparison.OrdinalIgnoreCase);
+            }
+            var results = GoogleSearch.Search(query);
+            StringBuilder sb = new StringBuilder();
+            sb.AppendLine("Here are some resources that might help:");
+            foreach (Result result in results)
+            {
+                sb.AppendFormat("<a href={0}>{1}</a>\n", result.Link, result.Title);
+            }
+            return sb.ToString();
         }
     }
 }

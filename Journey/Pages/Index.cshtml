@@ -62,8 +62,11 @@
             string actionName = "ResponsesAction" + i;
             <button type="submit" class="btn btn-primary" name=action value=@ViewData[actionName]>@ViewData[buttonName]</button>
         }
-        @* <button type="submit" class="btn btn-primary" name="action" value="Action1">Button 1</button>
-        <button type="submit" class="btn btn-secondary" name="action" value="Action2">Button 2</button> *@
+        <div>
+        @* <p>@ViewData["SearchResults"]</p> *@
+        @using System.Web;
+        <p>@Html.Raw(((string)ViewData["SearchResults"]).Replace("\n", "<br />"))</p>
+        </div>
     </form>
 
     <img id="imgReward" src="@ViewData["Reward"]" alt="Reward" />
