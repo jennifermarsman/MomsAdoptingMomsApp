@@ -3,6 +3,9 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System.Diagnostics;
+using System.Collections.Generic;
+using System;
+using System.Reflection;
 
 namespace Journey.Pages
 {
@@ -62,7 +65,7 @@ namespace Journey.Pages
 
             // Rewards
             string? reward = steps[step].Reward;
-            if ( reward == null || reward == "none")
+            if (reward == null || reward == "none")
             {
                 ViewData["Reward"] = @"img\clear.png";
             }
@@ -70,11 +73,22 @@ namespace Journey.Pages
             {
                 ViewData["Reward"] = @"img\" + reward;
             }
+
+            int numberOfButtons = steps[step].Responses.Count();
+            ViewData["NumberOfButtons"] = numberOfButtons;
+            for (int i = 0; i < numberOfButtons; i++)
+            {
+                ViewData["ResponsesText" + i] = steps[step].Responses.Keys.ElementAt(i).ToString();
+                ViewData["ResponsesAction" + i] = steps[step].Responses.Values.ElementAt(i).ToString();
+            }
+
+            Console.WriteLine("Responses: ", ViewData["Responses"]);
             // TODO: any sizing work that needs to be done here?  Proper Grid/layout for phone?
         }
 
         public void OnButtonPress()
         {
+            Console.WriteLine("Button Pressed");
             // TODO: Store off user's progress in journey - step name
             // TODO: Redraw page based on next step and what button was clicked
             // TODO: change currentStep
@@ -98,6 +112,40 @@ namespace Journey.Pages
         {
             // do the zipcode action here
             return new string[] {"abc"};
+        }
+        
+        public IActionResult OnPost(string action)
+        {
+            if (action == "Action1")
+            {
+                Console.WriteLine("Button1 Pressed");
+                // Handle the click event for Button 1
+                // You can perform any necessary actions for Button 1
+            }
+            else if (action == "Action2")
+            {
+                // Handle the click event for Button 2
+                // You can perform any necessary actions for Button 2
+            }
+            else if (action == "StepA")
+            {
+                MethodInfo methodInfo = this.GetType().GetMethod(action);
+                if (methodInfo != null)
+                {
+                    methodInfo.Invoke(this, null);
+                }
+            }
+            else
+            {
+                // Handle other cases or errors
+            }
+
+            return Page();
+        }
+
+        public void StepA()
+        {
+            Console.WriteLine("StepA has been called");
         }
     }
 }
