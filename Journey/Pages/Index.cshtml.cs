@@ -3,6 +3,9 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System.Diagnostics;
+using System.Collections.Generic;
+using System;
+using System.Reflection;
 
 namespace Journey.Pages
 {
@@ -18,9 +21,6 @@ namespace Journey.Pages
             _logger = logger;
         }
 
-        public int NumberOfButtons { get; set; } = 2; // Set the initial number of buttons
-        public string ResponsesText = "NewButton";
-        public string ResponsesAction = "NewAction";
         public void OnGet()
         {
             // TODO: Pull the identity and current step from somewhere
@@ -61,7 +61,7 @@ namespace Journey.Pages
 
             // Rewards
             string? reward = steps[step].Reward;
-            if ( reward == null || reward == "none")
+            if (reward == null || reward == "none")
             {
                 ViewData["Reward"] = @"img\clear.png";
             }
@@ -70,11 +70,12 @@ namespace Journey.Pages
                 ViewData["Reward"] = @"img\" + reward;
             }
 
-            ViewData["NumberOfButtons"] = 2;
-            for(int i=0; i<NumberOfButtons; i++)
+            int numberOfButtons = steps[step].Responses.Count();
+            ViewData["NumberOfButtons"] = numberOfButtons;
+            for (int i = 0; i < numberOfButtons; i++)
             {
-                ViewData["ResponsesText"+i] = "NewButton" + i.ToString();
-                ViewData["ResponsesAction"+i] = "NewAction" + i.ToString();
+                ViewData["ResponsesText" + i] = steps[step].Responses.Keys.ElementAt(i).ToString();
+                ViewData["ResponsesAction" + i] = steps[step].Responses.Values.ElementAt(i).ToString();
             }
 
             Console.WriteLine("Responses: ", ViewData["Responses"]);
@@ -92,29 +93,36 @@ namespace Journey.Pages
 
         public IActionResult OnPost(string action)
         {
-            switch (action)
+            if (action == "Action1")
             {
-                case "Action1":
-                    Console.WriteLine("Button1 Pressed");
-                    // Handle the click event for Button 1
-                    // You can perform any necessary actions for Button 1
-                    break;
-                case "Action2":
-                    // Handle the click event for Button 2
-                    // You can perform any necessary actions for Button 2
-                    break;
-                case "NewAction0":
-                    Console.WriteLine("NewAction0 Pressed");
-                    break;
-                case "NewAction1":
-                    Console.WriteLine("NewAction1 Pressed");
-                    break;
-                default:
-                    // Handle other cases or errors
-                    break;
+                Console.WriteLine("Button1 Pressed");
+                // Handle the click event for Button 1
+                // You can perform any necessary actions for Button 1
+            }
+            else if (action == "Action2")
+            {
+                // Handle the click event for Button 2
+                // You can perform any necessary actions for Button 2
+            }
+            else if (action == "StepA")
+            {
+                MethodInfo methodInfo = this.GetType().GetMethod(action);
+                if (methodInfo != null)
+                {
+                    methodInfo.Invoke(this, null);
+                }
+            }
+            else
+            {
+                // Handle other cases or errors
             }
 
             return Page();
+        }
+
+        public void StepA()
+        {
+            Console.WriteLine("StepA has been called");
         }
     }
 }

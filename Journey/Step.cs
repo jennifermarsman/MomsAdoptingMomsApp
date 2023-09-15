@@ -1,11 +1,13 @@
-﻿namespace Journey
+﻿using System.Collections.Generic;
+
+namespace Journey
 {
     public class Step
     {
         public string Title { get; set; }
         public string Text { get; set; }
         public string? Inputs { get; set; }
-        public Responses Responses { get; set; }
+        public Dictionary<string, string> Responses { get; set; }
         public Functions? Functions { get; set; }
         //public string? Functions { get; set; }
         public string? Reward { get; set; }
