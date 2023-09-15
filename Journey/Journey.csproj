@@ -9,6 +9,7 @@
   <ItemGroup>
     <PackageReference Include="Google.Apis" Version="1.62.0" />
     <PackageReference Include="Google.Apis.Core" Version="1.62.0" />
+    <PackageReference Include="Google.Apis.Customsearch.v1" Version="1.9.2.460" />
     <PackageReference Include="Google.Apis.CustomSearchAPI.v1" Version="1.62.0.3106" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
   </ItemGroup>
