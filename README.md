@@ -66,4 +66,7 @@ Here are some common errors that you may see:
   },
   ```
 
-  In this scenario, the "Next" step for SecondStep is called "ThirdStep1", but the actual step name is "ThirdStep", so it can't find the step when doing a lookup.  To fix, ensure that the values for all Responses keys correspond to valid steps.    
+  In this scenario, the "Next" step for SecondStep is called "ThirdStep1", but the actual step name is "ThirdStep", so it can't find the step when doing a lookup.  To fix: 
+  1. Ensure that the values for all Responses keys correspond to valid steps in the navigation.json file.  
+  2. You may also have to edit the "Moms Adopting Moms" spreadsheet if a bad key got written there, or else the foster parent will be stuck on that step.  Check the "CurrentStep" column and ensure all steps are valid.  
+
