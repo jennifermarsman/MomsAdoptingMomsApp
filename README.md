@@ -26,20 +26,44 @@ There is a desperate need to fix outdated systems, create new portals of assista
 
 Moms Adopting Moms is a non-profit in the process of being incorporated to provide peer mentors to bio and foster moms to model what building a relationship of support looks like between these moms for long term support and assistance. We will also address the issue of not knowing where to go to get the resources the bio moms need by building and providing them with a mobile app built to consolidate everything they need in an A to Z step by step guide. Step A might be a list of Detox Centers open for them to move into immediately. Step G might be to attend this parenting class at this location and time. Step M could be reunifying with their children. Step Z would be the bio moms achieving their personal goals, the Department of Family and Childrens Services no longer involved, the family living happily together in a fully furnished home with enough money to pay their bills and no longer relying on assistance. This tool will also eventually be used to help preserve families at risk of losing their kids. This app should be generic, accurate, and functional enough to be able to be deployed in every county in the country that has a foster care system.
 
+# Project Status
+This project was developed during the Microsoft Global Hackathon 2023 with a limited time window.  As such, it is prototype code and not ready for production usage yet.  In particular, I want to call out the privacy concerns.  During the course of the journey that this application walks a foster mother through, it may ask personal questions about drug usage and such.  We want a strong authorization and authentication solution in place before production usage.  
+
+We have documented some of the remaining work in the [GitHub issues](https://github.com/jennifermarsman/MomsAdoptingMomsApp/issues) section.  
+
 # Setup
-Use the following commands in a python environment (such as an Anaconda prompt window) to set up your environment.  This creates and activates an environment and installs the required packages.  For subsequent runs after the initial install, you will only need to activate the environment and then run the python script.  
+The project was developed using Visual Studio.  You can download the free Community edition at https://aka.ms/VSDownload.  
 
-### First run
-```
-conda create --name moms python=3.9 -y
-conda activate moms
+Clone or download this project to your local machine.  Open the .sln file and press "Run" or F5 to build and run the project and test locally.  
 
-pip install -r requirements.txt
-python main.py
-```
+# Troubleshooting Guide
+Here are some common errors that you may see:
 
-### Subsequent runs
++ **"Error saving file C:\Code\MomsAdoptingMomsApp\Journey\Moms Adopting Moms.xlsx"** or **"The process cannot access the file 'C:\Code\MomsAdoptingMomsApp\Journey\Moms Adopting Moms.xlsx' because it is being used by another process."** - You may have the "Moms Adopting Moms" spreadsheet open in Excel, and this code is fighting with the Excel process over who gets to modify it.  Close Excel and try again.  
+
++ **Newtonsoft.Json.JsonReaderException: 'After parsing a value an unexpected character was encountered'** - JSON exceptions may indicate that there is an error with the navigation.json file and it is no longer in proper json format.  Run navigation.json through a free JSON formatter online (like https://www.jsonformatter.io) to ensure that the JSON is valid.  
+
++ **System.Collections.Generic.KeyNotFoundException: 'The given key 'ThirdStep1' was not present in the dictionary.'** - An error like this indicates that the navigation steps don't align.  For example, you may have put something like this:
+
 ```
-conda activate moms
-python main.py
-```
+  "SecondStep": {
+    "Title": "Congrats!",
+    "Text": "Every journey begins with a single step. Imagine yourself on this journey with us. You will have help and encouragement along the way. There will be mountains to climb, rivers to cross and obstacles that might slow you down but you can do it! \n\nBe the hero for your children and be the one responsible for bringing them home! ",
+    "Inputs": null,
+    "Responses": {
+      "Next": "ThirdStep1"
+    },
+    "Reward": "none"
+  },
+  "ThirdStep": {
+    "Title": "Let's do this",
+    "Text": "So are you READY? Let’s do this!!!!",
+    "Inputs": null,
+    "Responses": {
+      "Next": "StepA"
+    },
+    "Reward": "none"
+  },
+  ```
+
+  In this scenario, the "Next" step for SecondStep is called "ThirdStep1", but the actual step name is "ThirdStep", so it can't find the step when doing a lookup.  To fix, ensure that the values for all Responses keys correspond to valid steps.    
