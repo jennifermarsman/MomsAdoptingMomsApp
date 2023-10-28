@@ -93,7 +93,10 @@ namespace Journey.Pages
                 ZipCode = sheet.Cells[userRow, colZipCode].Value?.ToString();
                 CurrentStep = sheet.Cells[userRow, colCurrentStep].Value?.ToString();
 
-                // TODO: add these 3 to session state?  
+                // Add to session state
+                HttpContext.Session.SetString("FirstName", FirstName);
+                HttpContext.Session.SetString("ZipCode", ZipCode);
+                HttpContext.Session.SetString("CurrentStep", CurrentStep);
             }
         }
 
@@ -264,7 +267,11 @@ namespace Journey.Pages
         {
             if (query.IndexOf("near me", StringComparison.OrdinalIgnoreCase) >= 0)
             {
-                query = query.Replace("me", ZipCode, StringComparison.OrdinalIgnoreCase);
+                string? zip = (ZipCode != null) ? ZipCode : HttpContext.Session.GetString("ZipCode");
+                if (zip != null)
+                {
+                    query = query.Replace("me", zip, StringComparison.OrdinalIgnoreCase);
+                }
             }
             var results = GoogleSearch.Search(query);
             StringBuilder sb = new StringBuilder();
