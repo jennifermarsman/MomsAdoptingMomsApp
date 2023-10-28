@@ -27,7 +27,7 @@ There is a desperate need to fix outdated systems, create new portals of assista
 Moms Adopting Moms is a non-profit in the process of being incorporated to provide peer mentors to bio and foster moms to model what building a relationship of support looks like between these moms for long term support and assistance. We will also address the issue of not knowing where to go to get the resources the bio moms need by building and providing them with a mobile app built to consolidate everything they need in an A to Z step by step guide. Step A might be a list of Detox Centers open for them to move into immediately. Step G might be to attend this parenting class at this location and time. Step M could be reunifying with their children. Step Z would be the bio moms achieving their personal goals, the Department of Family and Childrens Services no longer involved, the family living happily together in a fully furnished home with enough money to pay their bills and no longer relying on assistance. This tool will also eventually be used to help preserve families at risk of losing their kids. This app should be generic, accurate, and functional enough to be able to be deployed in every county in the country that has a foster care system.
 
 # Project Status
-This project was developed during the Microsoft Global Hackathon 2023 with a limited time window.  As such, it is prototype code and not ready for production usage yet.  In particular, I want to call out the privacy concerns.  During the course of the journey that this application walks a foster mother through, it may ask personal questions about drug usage and such.  We want a strong authorization and authentication solution in place before production usage.  
+This project was developed during the Microsoft Global Hackathon 2023 with a limited time window.  As such, it is prototype code and not ready for production usage yet.  In particular, I want to call out the privacy concerns.  During the course of the journey that this application walks a biological mother through, it may ask personal questions about drug usage and such.  We want a strong authorization and authentication solution in place before production usage.  
 
 We have documented some of the remaining work in the [GitHub issues](https://github.com/jennifermarsman/MomsAdoptingMomsApp/issues) section.  
 
@@ -68,5 +68,31 @@ Here are some common errors that you may see:
 
   In this scenario, the "Next" step for SecondStep is called "ThirdStep1", but the actual step name is "ThirdStep", so it can't find the step when doing a lookup.  To fix: 
   1. Ensure that the values for all Responses keys correspond to valid steps in the navigation.json file.  
-  2. You may also have to edit the "Moms Adopting Moms" spreadsheet if a bad key got written there, or else the foster parent will be stuck on that step.  Check the "CurrentStep" column and ensure all steps are valid.  
+  2. You may also have to edit the "Moms Adopting Moms" spreadsheet if a bad key got written there, or else the biological parent will be stuck on that step.  Check the "CurrentStep" column and ensure all steps are valid.  
 
+# Modifying the Journey
+The steps in the journey are documented in the navigation.json file.  Each step should follow this format:
+
+```
+  "StepID": {
+    "Title": "Put your title text here!",
+    "Text": "Congrats! You have taken the first step in your journey! You logged in! Welcome {FirstName}!  Today is a new day and you got this!  We are 100% on your side and if you follow the suggestions we will give you through this website, you WILL get your kids back faster and then we promise to help you THRIVE post reunification as well.",
+    "Responses": {
+      "ButtonText1": "StepID-if-they-click-this-button"
+    },
+    "Reward": "medal.gif"
+  },
+  "StepID-if-they-click-this-button": {
+    FILL IN ALL OF THE SAME THINGS HERE...
+  }
+  ```
+
+The **StepID** should be an identifier for the step - this information is not displayed anywhere in the UI, just used internally to identify each step.  
+
+Update the value of the **Title** with the title text that you want shown to the user.
+
+Update the value of the **Text** with the text that should be displayed for that step.  If you want to pull in information from the "Moms Adopting Moms" spreadsheet, include the column name of the field you want enclosed in curly braces like you see above with {FirstName}.  
+
+You can have multiple **Responses** to the questions asked in the step, which can lead to different paths.  For each item in Responses, the first part is the text that will be displayed in the button (like "ButtonText1"), and the second part is the StepID of the next step that this choice should take them to (like "StepID-if-they-click-this-button").  This StepID must also exist as a separate defined step in the navigation.json file.  
+
+If you want to display a **Reward** image for a momentous step, just add it to the project's img folder, and then reference the name of the image as the value of the Reward, like "medal.gif" above.  
