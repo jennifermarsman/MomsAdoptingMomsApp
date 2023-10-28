@@ -77,10 +77,14 @@ The steps in the journey are documented in the navigation.json file.  Each step 
   "StepID": {
     "Title": "Put your title text here!",
     "Text": "Congrats! You have taken the first step in your journey! You logged in! Welcome {FirstName}!  Today is a new day and you got this!  We are 100% on your side and if you follow the suggestions we will give you through this website, you WILL get your kids back faster and then we promise to help you THRIVE post reunification as well.",
+    "Inputs": "FirstName",
     "Responses": {
       "ButtonText1": "StepID-if-they-click-this-button"
     },
-    "Reward": "medal.gif"
+    "Reward": "medal.gif", 
+    "Functions": {
+      "Search": "detox centers near me"
+    }
   },
   "StepID-if-they-click-this-button": {
     FILL IN ALL OF THE SAME THINGS HERE...
@@ -91,8 +95,10 @@ The **StepID** should be an identifier for the step - this information is not di
 
 Update the value of the **Title** with the title text that you want shown to the user.
 
-Update the value of the **Text** with the text that should be displayed for that step.  If you want to pull in information from the "Moms Adopting Moms" spreadsheet, include the column name of the field you want enclosed in curly braces like you see above with {FirstName}.  
+Update the value of the **Text** with the text that should be displayed for that step.  If you want to pull in information from the "Moms Adopting Moms" spreadsheet, include the column name of the field you want enclosed in curly braces like you see above with {FirstName}, and provide a corresponding **Inputs** value.  
 
 You can have multiple **Responses** to the questions asked in the step, which can lead to different paths.  For each item in Responses, the first part is the text that will be displayed in the button (like "ButtonText1"), and the second part is the StepID of the next step that this choice should take them to (like "StepID-if-they-click-this-button").  This StepID must also exist as a separate defined step in the navigation.json file.  
 
 If you want to display a **Reward** image for a momentous step, just add it to the project's img folder, and then reference the name of the image as the value of the Reward, like "medal.gif" above.  
+
+There is an optional **Functions** which contains functions to call during that step.  One function that has been implemented already is Search, and it takes a parameter of the query term to search for (such as "detox centers near me" above).  Other functions could be added as needed, but this will require a code change to add the corresponding code.  The code does support reflection to call the method name found here in the navigation file (such as "Search").  
