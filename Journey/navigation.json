@@ -1,7 +1,7 @@
 {
   "FirstStep": {
     "Title": "Congrats!",
-    "Text": "Congrats! You have taken the first step in your journey! You logged in! Welcome {FirstName}!  Today is a new day and you got this!  We are 100% on your side and if you follow the suggestions we will give you through this website, you WILL get your kids back faster and then we promise to help you THRIVE post reunification as well.",
+    "Text": "Congrats! You have taken the first step in your journey! You logged in! Welcome {FirstName}! Today is a new day and you got this! We are 100% on your side and if you follow the suggestions we will give you through this website, you WILL get your kids back faster and then we promise to help you THRIVE post reunification as well.",
     "Inputs": "FirstName",
     "Responses": {
       "Next": "SecondStep"
@@ -10,7 +10,7 @@
   },
   "SecondStep": {
     "Title": "Congrats!",
-    "Text": "Every journey begins with a single step. Imagine yourself on this journey with us. You will have help and encouragement along the way. There will be mountains to climb, rivers to cross and obstacles that might slow you down but you can do it! \n\nBe the hero for your children and be the one responsible for bringing them home! ",
+    "Text": "Every journey begins with a single step. Imagine yourself on this journey with us. You will have help and encouragement along the way. There will be mountains to climb, rivers to cross and obstacles that might slow you down but you CAN do it! \n\nBe the hero for your children and be the one responsible for bringing them home!",
     "Inputs": null,
     "Responses": {
       "Next": "ThirdStep"
@@ -28,8 +28,8 @@
   },
 
   "StepA": {
-    "Title": "Step A",
-    "Text": "Fantastic, just a couple of questions… \n\nDo you use any mind altering substances to cope with your emotions or situations currently in your life? ",
+    "Title": "Achieve your DEPARTURE BADGE!!",
+    "Text": "Fantastic, just a couple of questions to get us started… \n\nDo you or have you in the last several days, use any mind altering substances to cope with your emotions or situations currently in your life?",
     "Inputs": null,
     "Responses": {
       "Yes": "StepA-1",
@@ -38,8 +38,8 @@
     "Reward": "none"
   },
   "StepA-1": {
-    "Title": "Step A",
-    "Text": "We all have things we struggle with, studies show that going to detox is the number 1 way to get off drugs and or alcohol and to begin your path to recovery.  We have located detoxes in your area to consider with your peer mentor: \n{SearchForDetoxResults}\n\nYour peer mentor will help get you a spot and take you to the detox.  They will also make sure you have everything you need when you check in. The detox location will work with you to find a longer term rehab once you have completed detox but your peer mentor will be checking in with you regularly so just remember – YOU GOT THIS!",
+    "Title": "Find a detox center",
+    "Text": "We all have things we struggle with, studies show that going to detox is the number 1 way to get off drugs and or alcohol and to begin your path to recovery. We have located detoxes in your area to consider with your peer mentor: \n{SearchForDetoxResults}\n\nYour peer mentor will help get you a spot and take you to the detox. They will also make sure you have everything you need when you check in. The detox location will work with you to find a longer term rehab once you have completed detox but your peer mentor will be checking in with you regularly so just remember – YOU GOT THIS!",
     "Inputs": null,
     "Responses": {
       "Next": "StepA-3"
@@ -73,7 +73,7 @@
   "StepA-2-2": {
     "Title": "Step A",
     "Text": "What allegations have been made that resulted in your kids going into care?",
-    "comments":"TO DO, check box implementation",
+    "comments": "TO DO, check box implementation",
     "Responses": {
       "Next": "StepD"
     },
@@ -81,7 +81,7 @@
   },
   "StepA-2-3": {
     "Title": "Step A",
-    "Text": "No Problem! Life is sometimes crazy busy and near overwhelming isn’t it?  Your Peer mentor will work with your case manager to get you to a drug screening. Check back here once you know the result",
+    "Text": "No Problem! Life is sometimes crazy busy and near overwhelming isn’t it? Your Peer mentor will work with your case manager to get you to a drug screening. Check back here once you know the result",
     "Inputs": null,
     "Responses": {
       "Next": ""
@@ -137,8 +137,8 @@
   "StepD-1": {
     "Title": "Step D",
     "Text": "What is the name of your employer? {EmployerName} \n\nWhat is your Job title? {JobTitle} \n\nDo you like your job? {JobSatisfaction} \n\n How much are you being paid by hour right now? {HourlyPay}",
-    "Inputs": "EmployerName", 
-    "comments" : "TO-DO pretty sure what i did above was wrong but need to figure out how to implement multiple inputs",
+    "Inputs": null,
+    "comments": "TO-DO pretty sure what i did above was wrong but need to figure out how to implement multiple inputs",
     "Responses": {
       "Next": "StepG"
     },
@@ -147,7 +147,7 @@
   "StepD-2": {
     "Title": "Step D",
     "Text": "Before we can find something that would be a great fit, we need to make sure you have all the proper identification that employers are looking for…",
-    "comments" : "TO-DO checkbox",
+    "comments": "TO-DO checkbox",
     "Responses": {
       "Next": "StepE"
     },
@@ -187,14 +187,14 @@
     "Text": "Here are five jobs that fit with what you enjoy and your experience hiring right now in your area. Fill out the application and let’s see what happens! We’re also including a few job search tools that you can use to search as well. We’re routing for you!! \n{SearchForJob}",
     "Input": null,
     "comment": "Implement check boxes",
-    "Comments" : "There are meant to be two paths here, Step F is for users who were or in rehab, step G is for users who are not in rehab but I didn't know how to show a distinciton in the user journey",
+    "Comments": "There are meant to be two paths here, Step F is for users who were or in rehab, step G is for users who are not in rehab but I didn't know how to show a distinciton in the user journey",
     "Responses": {
       "Next": "StepF"
     },
     "Functions": {
       "SearchForJob": null
     },
-    "Reward": "none" 
+    "Reward": "none"
   },
   "StepF": {
     "Title": "Step F",
@@ -259,15 +259,162 @@
   },
   "StepH": {
     "Title": "Step H",
-    "Text": "Have you seen your kids yet?!?!  IT’S TIME!  They miss you terribly! \n\nHas DFCS setup weekly visitations for you with your children?",
+    "Text": "Have you been attending each week? \n\nLet your peer mentor know ASAP if you have not been able to see your kids or need any help with your visits.  These are SOOOOO important!  Your kids think you are terrific and they love you so much!  And by regularly attending your visitations you have earned your  APPRENTICE BADGE!!!",
     "Input": null,
+    "comment": "added step J here",
     "Responses": {
-      "Yes": "",
-      "No": ""
+      "Yes": "StepJ",
+      "No": "StepJ"
     },
     "Reward": "none"
+  },
+  "StepI": {
+    "Title": "Step I",
+    "Text": "Ever need someone to just talk to?  Someone that can understand where you’re coming from and help you sort it all out?  Someone that has been there and can offer great advice?\n\nYes, we are talking about counselors and they are not just for Bio moms with kids in care, they are for EVERYONE!",
+    "Input": null,
+    "comment": "Implement drop down menu code For Each Selected, show the top 3 results in their zip code for licensed counselors specializing in that add fireworks too",
+    "Responses": {
+      "Next": "StepJ"
+    },
+    "Reward": "none"
+  },
+  "StepJ": {
+    "Title": "Step J",
+    "Text": "Have we told you lately that we think you’re amazing??  Look how far you’ve come!! You are already 1/3 of the way through to not just reconciling with your kids but THRIVING well past reunification!  Well done you.  You’ve just earned another 15 points and you are on your way to earning your NOVICE badge!! Keep going!  We are all routing for you!",
+    "Input": null,
+    "comment": "add reward",
+    "Responses": {
+      "Next": "StepK"
+    },
+    "Reward": "none"
+  },
+  "StepK": {
+    "Title": "Step K",
+    "Text": "It’s really important that you end up in your career choice and while you are going through rehab and before your kiddos come home is the perfect time to really think about what you want to do and let us help you find the resources, classes, trainings you need to get there.",
+    "Input": null,
+    "comment": "Implement Dropdown menu, job and trainings",
+    "Responses": {
+      "Next": "StepL"
+    },
+    "Reward": "none"
+  },
+  "StepL": {
+    "Title": "Step L",
+    "Text": "We also found these FREE online resources for your chosen profession that you can do in your own time, at your own pace!  For every one you complete you get 5 points!",
+    "Input": null,
+    "comment": "Suggestions for virtual training",
+    "Responses": {
+      "Next": "StepM"
+    },
+    "Reward": "none"
+  },
+  "StepM": {
+    "Title": "Step M",
+    "Text": "We also found these FREE online resources for your chosen profession that you can do in your own time, at your own pace!  For every one you complete you get 5 points!",
+    "Input": null,
+    "comment": "Suggestions for virtual training",
+    "Responses": {
+      "Next": "StepN"
+    },
+    "Reward": "none"
+  },
+  "StepN": {
+    "Title": "Step N",
+    "Text": "AWESOME job!! Did you know you have already gotten _______ Insert the number of points and you are only a few steps away from earning your NOVICE Badge!  Well done you!Now let’s research parenting classes.  Sometimes these are setup at your visitation center and sometimes you need to find one in your area so just in case, here are suggestions for upcoming parenting classes nearby: ",
+    "Input": null,
+    "comment": "Look for parenting classes nearby",
+    "Responses": {
+      "Next": "StepO"
+    },
+    "Reward": "none"
+  },
+  "StepO": {
+    "Title": "Step O",
+    "Text": "So are you an expert now in all things Parenting?? Parenting is HARD work but you got this. You can do it and even though NONE of us are perfect parents I bet you learned a few things you can apply when your kids come back to you.  Not long now!  You are nearly halfway there and only a few steps away from getting your kids back!  Well Done!! We are SOOOOOOOOOOOOOOOOO Proud of you!",
+    "Input": null,
+    "Responses": {
+      "Next": "StepP"
+    },
+    "Reward": "none"
+  },
+  "StepP": {
+    "Title": "Step P",
+    "Text": "So how is your transportation situation?  Need some help finding a new ride that can fit you AND your kids comfortably?",
+    "Input": null,
+    "Responses": {
+      "Yes": "StepP-1",
+      "No": "StepP-2"
+    },
+    "Reward": "none"
+  },
+  "StepP-1": {
+    "Title": "Step P-1",
+    "Text": "How do you get around now?",
+    "Input": null,
+    "comment": "Implement dropdown",
+    "Reward": "none",
+    "Responses": {
+      "Next": "StepQ"
+    }
+  },
+  "StepP-2": {
+    "Title": "Step P-2",
+    "Text": " Excellent!  You are one step closer to your kiddos coming home!",
+    "Input": null,
+    "Reward": "none",
+    "Responses": {
+      "Next": "StepQ"
+    }
+  },
+  "StepQ": {
+    "Title": "Step Q",
+    "Text": "You did it!!! You are now a Novice!!  You have earned your next badge.  This is huge!!  Look at how far you’ve come!! We are SOOOOOOOOOOOOO proud of you!  15 points for earning your NOVICE BADGE!! You are on your way to becoming a Journeyman now!  This is where you will find a house for you and your kids, get it furnished and all setup and get your kids back!",
+    "Input": null,
+    "Reward": "none",
+    "Responses": {
+      "Next": "StepR"
+    }
+  },
+  "StepR": {
+    "Title": "Step R",
+    "Text": "$$$ BUDGETING, SAVINGS and INVESTMENTS $$$ In order to live a stress free life, not only do you need to get adequate training in the career field of choice and be making a decent salary but you need to know where you are spending your money and how to save and invest for your future!  Here are some budgeting classes you can take nearby to help you learn what you need to know.  You will receive 10 points for completing a budgeting class! ",
+    "Input": null,
+    "Reward": "none",
+    "Responses": {
+      "Next": "StepS"
+    }
+  },
+  "StepS": {
+    "Title": "Step S",
+    "Text": "Houses, Apartments, Mobile Homes, Duplexes – there are so many choices but you are going to need some help!NPlease enter the city and state or zip code of where you would like to live and we will show you what’s available in that area to rent.",
+    "Input": null,
+    "Reward": "none",
+    "Responses": {
+      "Next": "StepT"
+    }
+  },
+  "StepT": {
+    "Title": "Step T",
+    "Text": "YEAH!!! You’ve found a place to live!  CONGRATULATIONS!  Now let’s get it furnished!",
+    "Input": null,
+    "Reward": "none",
+    "Responses": {
+      "Next": "StepU"
+    }
+  },
+  "StepU": {
+    "Title": "Step U",
+    "Text": "Light Turns on and Off and pipe runs with water. Please enter your NEW address so we can tell you who to contact to get your electricity and water turned on!",
+    "Input": null,
+    "Reward": "none",
+    "Responses": {
+      "Next": ""
+    }
   }
-  
+
+
+
+
 
 
 
