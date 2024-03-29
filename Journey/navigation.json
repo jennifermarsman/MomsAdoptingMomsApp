@@ -45,7 +45,7 @@
       "Next": "StepA-3"
     },
     "Functions": {
-      "Search": "detox centers near me"
+      "Search": "detox centers"
     },
     "Reward": "none"
   },
@@ -106,7 +106,7 @@
     },
     "Reward": "none"
   },
-  "StepC-1": {
+  "StepC": {
     "Title": "Step C",
     "Text": "Now that you’ve gotten to rehab and settled in, we can talk about finding you a job and do other things to help navigate your way across rehab river!",
     "Input": null,
