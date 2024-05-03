@@ -53,6 +53,8 @@ namespace Journey.Pages
             // TODO: get parentID from intro screen
             ParentID = "12345";
             HttpContext.Session.SetString("ParentID", ParentID);
+            
+
 
             // Based on parentID, retrieve user data and current step from Excel
             LoadExcel();
@@ -94,9 +96,40 @@ namespace Journey.Pages
                 CurrentStep = sheet.Cells[userRow, colCurrentStep].Value?.ToString();
 
                 // Add to session state
-                HttpContext.Session.SetString("FirstName", FirstName);
+                if (FirstName != null)
+                {
+                    HttpContext.Session.SetString("FirstName", FirstName);
+                }
+
+                // Check if ZipCode is not null before setting it in the session
+                if (ZipCode != null)
+                {
+                    HttpContext.Session.SetString("ZipCode", ZipCode);
+                }
+
+                // Check if CurrentStep is not null before setting it in the session
+                if (CurrentStep != null)
+                {
+                    HttpContext.Session.SetString("CurrentStep", CurrentStep);
+                }
+                else
+                {
+                    // Handle the case when CurrentStep is null by setting a default value
+                    
+                    HttpContext.Session.SetString("CurrentStep", CurrentStep);
+                }
+               /*HttpContext.Session.SetString("FirstName", FirstName);
                 HttpContext.Session.SetString("ZipCode", ZipCode);
-                HttpContext.Session.SetString("CurrentStep", CurrentStep);
+                if (CurrentStep != null)
+                {
+                    HttpContext.Session.SetString("CurrentStep", CurrentStep);
+                }
+                else
+                {
+                    // Optionally handle the case when CurrentStep is null
+                    CurrentStep = "StepU";
+                }*/
+            
             }
         }
 
@@ -143,11 +176,16 @@ namespace Journey.Pages
             LoadJson();
 
             if (!steps.ContainsKey(step)) {
+                CurrentStep = steps.Keys.FirstOrDefault();
                 // The navigation.json file is messed up.  
                 // TODO: send an email to Mary?  
             }
+            else
+            {
+                ViewData["Heading"] = steps[step].Title;
+            }
 
-            ViewData["Heading"] = steps[step].Title;
+            
 
             // Format Text to include Input (name and such) in the output
             if (steps[step].Inputs != null && steps[step].Inputs.ToLower() != "none")
@@ -204,24 +242,49 @@ namespace Journey.Pages
             ViewData["SearchResults"] = "";
             Console.WriteLine("Responses: ", ViewData["Responses"]);
 
-            if (steps[step].Functions != null)
-            {
-                for (int i = 0; i < steps[step].Functions.Count(); i++)
-                {
-                    string functionName = steps[step].Functions.ElementAt(i).Key.ToString();
+
+            //if (steps[step].Functions != null && steps.ContainsKey(step))
+            //{
+               // for (int i = 0; i < steps[step].Functions.Count(); i++)
+               // {
+                  //  string functionName = steps[step].Functions.ElementAt(i).Key.ToString();
                     // Read the arguments to the function from the step
-                    string functionArguments = steps[step].Functions.ElementAt(i).Value.ToString();
-                    if (functionName == "Search")
-                    {
-                        string searchResults = Search(functionArguments);
-                        ViewData["SearchResults"] = searchResults;
-                    }
-                    else
-                    {
-                        InvokeFunction(functionName, functionArguments);
-                    }
-                }
+                  //  string functionArguments = steps[step].Functions.ElementAt(i).Value.ToString();
+                   // if (functionName == "Search")
+                   // {
+                    //    string searchResults = Search(functionArguments);
+                   //     ViewData["SearchResults"] = searchResults;
+                  //  }
+                   // else
+                  //  {
+                   //     InvokeFunction(functionName, functionArguments);
+                   // }
+               /// }
+           // }
+           if (steps.ContainsKey(step) && steps[step].Functions != null)
+{
+    for (int i = 0; i < steps[step].Functions.Count(); i++)
+    {
+        var functionElement = steps[step].Functions.ElementAt(i);
+        if (functionElement.Value != null)
+        {
+            string functionName = functionElement.Key.ToString();
+            string functionArguments = functionElement.Value.ToString();
+            
+            if (functionName == "Search")
+            {
+                string searchResults = Search(functionArguments);
+                ViewData["SearchResults"] = searchResults;
             }
+            else
+            {
+                InvokeFunction(functionName, functionArguments);
+            }
+        }
+    }
+}
+
+
 
             // TODO: any sizing work that needs to be done here?  Proper Grid/layout for phone?
         }

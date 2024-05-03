@@ -1,0 +1,12 @@
+{
+  "name": "momsadoptingmomsapp",
+  "version": "1.0.0",
+  "description": "Building a detailed customized plan with local resources to reunite biological mothers with their children in foster care",
+  "main": "momsadoptingmomsapp",
+  "scripts": {
+    "start": "indexcshtml.cs",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
